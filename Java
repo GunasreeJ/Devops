@@ -1,0 +1,26 @@
+import java.util.List;
+
+public class SampleApp {
+
+    record Task(String title, boolean completed) {}
+
+    public static void main(String[] args) {
+        List<Task> tasks = List.of(
+            new Task("Generate GitHub SSH key", true),
+            new Task("Push sample HTML page", true),
+            new Task("Write sample Java program", false)
+        );
+
+        System.out.println("All Tasks:");
+        for (Task task : tasks) {
+            String status = task.completed() ? "[x]" : "[ ]";
+            System.out.println("  " + status + " " + task.title());
+        }
+
+        long pendingCount = tasks.stream()
+            .filter(task -> !task.completed())
+            .count();
+
+        System.out.println("\nPending tasks: " + pendingCount);
+    }
+}
