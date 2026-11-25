@@ -1,0 +1,28 @@
+from dataclasses import dataclass
+
+
+@dataclass
+class Task:
+    title: str
+    completed: bool = False
+
+
+def main() -> None:
+    tasks = [
+        Task("Generate GitHub SSH key", completed=True),
+        Task("Push sample HTML page", completed=True),
+        Task("Add sample Java program", completed=True),
+        Task("Write sample Python script", completed=False),
+    ]
+
+    print("All Tasks:")
+    for task in tasks:
+        status = "[x]" if task.completed else "[ ]"
+        print(f"  {status} {task.title}")
+
+    pending = [task for task in tasks if not task.completed]
+    print(f"\nPending tasks: {len(pending)}")
+
+
+if __name__ == "__main__":
+    main()
