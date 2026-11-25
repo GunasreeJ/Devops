@@ -1,0 +1,30 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+typedef struct {
+    const char *title;
+    bool completed;
+} Task;
+
+int main(void) {
+    Task tasks[] = {
+        {"Generate GitHub SSH key", true},
+        {"Push sample HTML page", true},
+        {"Add sample Java and Python programs", true},
+        {"Write sample C program", false}
+    };
+
+    size_t total = sizeof(tasks) / sizeof(tasks[0]);
+    int pending = 0;
+
+    printf("All Tasks:\n");
+    for (size_t i = 0; i < total; i++) {
+        printf("  [%c] %s\n", tasks[i].completed ? 'x' : ' ', tasks[i].title);
+        if (!tasks[i].completed) {
+            pending++;
+        }
+    }
+
+    printf("\nPending tasks: %d\n", pending);
+    return 0;
+}
